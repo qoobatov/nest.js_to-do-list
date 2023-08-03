@@ -3,6 +3,7 @@ import { ITask, ITaskService } from './interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { TaskModel } from './model/task.model';
 import { Model } from 'mongoose';
+import { TaskType } from './enum';
 
 @Injectable()
 export class TaskService implements ITaskService {
@@ -22,6 +23,7 @@ export class TaskService implements ITaskService {
 
   async addTask(data): Promise<ITask> {
     const newTask = new this.taskModel({
+      type: TaskType.IMPORTANT_AND_URGENT,
       ...data,
     });
     return newTask.save();
@@ -43,3 +45,7 @@ export class TaskService implements ITaskService {
     return await this.taskModel.findByIdAndRemove(id);
   }
 }
+
+// Базовые Методы которые используются часто
+// .save() insertMany, find, findOne, findById, updateOne, updateOne, updateMany, deleteOne, deleteMany,
+//

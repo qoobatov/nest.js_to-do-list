@@ -23,7 +23,7 @@ export class TaskController {
   }
 
   @Post()
-  async addTask(@Body() data: any) {
+  async addTask(@Body() data) {
     return await this.taskService.addTask(data);
   }
 
